@@ -4,4 +4,4 @@ set -e
 
 SHARDS_CACHE_PATH=vendor/cache/shards
 
-shards install --local
+shards install --local --verbose
