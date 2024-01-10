@@ -1,4 +1,3 @@
-# TODO: Write documentation for `Crystal::Base::Template`
 module Crystal::Base::Template
   VERSION = "0.1.0"
 
