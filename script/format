@@ -2,4 +2,8 @@
 
 set -e
 
+echo "🧹 formatting Crystal files..."
+
 crystal tool format $@
+
+echo "✅ formatting complete!"

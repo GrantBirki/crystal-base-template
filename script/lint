@@ -2,4 +2,8 @@
 
 set -e
 
+echo "🖌️  linting Crystal files..."
+
 ./bin/ameba $@
+
+echo "✅ linting complete!"
