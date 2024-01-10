@@ -2,6 +2,6 @@
 
 set -e
 
-export SHARDS_CACHE_PATH=vendor/cache
+SHARDS_CACHE_PATH=vendor/cache/shards
 
 shards install --local
