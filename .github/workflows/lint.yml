@@ -32,3 +32,6 @@ jobs:
 
       - name: lint
         run: script/lint
+
+      - name: format check
+        run: script/format --check
