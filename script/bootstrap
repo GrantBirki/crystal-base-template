@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SHARDS_CACHE_PATH=vendor/cache
 
 shards install --local

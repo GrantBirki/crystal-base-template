@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 CRYSTAL_FILE=crystal-base-template
 mkdir -p dist/
 
