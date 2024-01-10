@@ -5,3 +5,5 @@ module Crystal::Base::Template
     a + b
   end
 end
+
+puts Crystal::Base::Template.add(1, 2)
