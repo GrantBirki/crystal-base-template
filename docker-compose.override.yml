@@ -1,18 +1,8 @@
 # To build the entire stack run 'make run'
 
 services:
-  cache:
+  crystal-base-template:
     environment:
       LOG_LEVEL: DEBUG
-      KEMAL_ENV: development
+      # KEMAL_ENV: development
       CRYSTAL_ENV: development
-    networks:
-      - cache
-  
-  redis:
-    networks:
-      - cache
-
-networks:
-  cache:
-    name: cache

@@ -39,5 +39,5 @@ WORKDIR /app
 # copy the binary from the builder stage
 COPY --from=builder --chown=nonroot:nonroot /app/bin/crystal-base-template .
 
-# run the binary
-CMD ["./crystal-base-template"]
+# run the binary (adds two numbers together)
+CMD ["./crystal-base-template", "2", "3"]
