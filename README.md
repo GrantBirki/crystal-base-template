@@ -4,6 +4,37 @@
 
 A base template for building applications, services, command line utilities, or libraries in [crystal](https://github.com/crystal-lang/crystal).
 
+## About ⭐
+
+This template is designed to be a starting point for quickly getting your project off the ground in crystal-lang. It includes a number of features to help you get started quickly:
+
+- ⚙️ Helper scripts for bootstrapping, testing, linting, formatting, and building your project
+- 🏃 GitHub Actions CI/CD workflows for testing, building, linting, and running acceptance tests
+- 🧪 A basic test structure
+- 🐳 General purpose docker files for packing your crystal project into a container
+- 📦 An opinionated dependency vendoring strategy because "you" own your availability
+
+## Dependency Vendoring 📦
+
+This project uses a highly opinionated dependency vendoring strategy. This strategy is designed to ensure that you own your availability and can always build your project. This strategy is as follows:
+
+1. All dependencies are vendored into the project into the `lib/` directory
+2. The `lib/` directory is committed to the repository to ensure that all dependencies are available to build the project forever
+3. The `script/bootstrap` command installs dependencies with `SHARDS_CACHE_PATH="$DIR/.cache/shards" shards install ...` to ensure that each project has its own cache and does not interfere with other crystal projects
+
+## Docker Strategy 🐳
+
+This project also includes general purpose docker files for packing your crystal project into a container. The docker files are as follows:
+
+- `Dockerfile` - A general purpose docker file for building and running your crystal project
+- `docker-compose.yml` - A docker compose file for running your crystal project in a container (base configuration)
+- `docker-compose.override.yml` - A docker compose file for running your crystal project in a container (override configuration, extends the base by default - good for development)
+- `docker-compose.production.yml` - A docker compose file for running your crystal project in a container (production configuration, extends the base by default - must be used explicitly)
+
+This project more or less assumes that all crystal projects will be run in a container. This is because crystal is a compiled language and the compiled artifacts are not *always* portable across different systems. Running your crystal project in a container ensures that the compiled artifacts are portable and can be run anywhere. The main Dockerfile also uses a multi-stage build to ensure that the final image is as small as possible and generally only contains the compiled artifacts.
+
+> Hint: the `Makefile` can be used to quickly start the development docker compose stack with `make run` (use `make stop` to stop the stack)
+
 ## Usage 💻
 
 ### Setup
