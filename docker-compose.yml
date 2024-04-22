@@ -3,7 +3,7 @@
 services:
   crystal-base-template:
     container_name: crystal-base-template
-    restart: unless-stopped
+    restart: "no" # unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
