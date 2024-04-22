@@ -1,5 +1,5 @@
 require "log"
-require "./crystal-base-template"
+require "./lib/crystal-base-template"
 
 module CLI
   def self.main

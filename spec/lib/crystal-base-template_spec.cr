@@ -1,4 +1,5 @@
-require "./spec_helper"
+require "../spec_helper.cr"
+require "../../src/lib/crystal-base-template"
 
 describe Crystal::Base::Template do
   describe "#add" do
