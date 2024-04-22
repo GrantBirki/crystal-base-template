@@ -40,4 +40,4 @@ WORKDIR /app
 COPY --from=builder --chown=nonroot:nonroot /app/bin/crystal-base-template .
 
 # run the binary (adds two numbers together)
-CMD ["./crystal-base-template", "2", "3"]
+CMD ["./crystal-base-template", "234122314", "1234"]
