@@ -1,6 +1,17 @@
-/docs/
-/lib/
-/bin/
-/.shards/
+# crystal
+.cache/shards/*
+tmp/
+bin/
+.shards/
 *.dwarf
 dist/
+
+# non-critical vendored crystal files
+lib/**/.github/
+lib/**/docs/
+lib/**/examples/
+lib/**/spec/
+
+# secrets
+creds.env
+*.pem

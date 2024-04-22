@@ -1,4 +1,4 @@
-name: crystal-base-template
+name: base-template
 version: 0.1.0
 
 authors:
@@ -8,10 +8,11 @@ targets:
   crystal-base-template:
     main: src/crystal-base-template.cr
 
-crystal: '>= 1.11.0'
+crystal: ">= 1.12.1"
 
 license: MIT
 
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
+    version: ~> 1.6.1

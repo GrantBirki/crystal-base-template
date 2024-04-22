@@ -1,0 +1,28 @@
+# To build the entire stack run 'make run'
+
+services:
+  redis:
+    container_name: redis
+    image: redis:alpine3.16
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+
+  cache:
+    container_name: cache
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    depends_on:
+      - redis
