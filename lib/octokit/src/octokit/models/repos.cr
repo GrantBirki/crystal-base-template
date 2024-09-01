@@ -1,3 +1,5 @@
+require "../models/misc"
+
 module Octokit
   module Models
     class Repository

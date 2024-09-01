@@ -88,17 +88,17 @@ module Octokit
   #
   # With standard auth:
   # ```
-  # @client = Octokit::Client.new("watzon", "PASSWORD")
+  # @client = Octokit::Client.new("monalisa", "PASSWORD")
   # ```
   #
   # With access token:
   # ```
-  # @client = Octokit::Client.new("watzon", access_token: "ACCESS_TOKEN")
+  # @client = Octokit::Client.new("monalisa", access_token: "ACCESS_TOKEN")
   # ```
   #
   # With bearer token:
   # ```
-  # @client = Octokit::Client.new("watzon", bearer_token: "BEARER_TOKEN")
+  # @client = Octokit::Client.new("monalisa", bearer_token: "BEARER_TOKEN")
   # ```
   class Client
     include Octokit::Authentication
@@ -110,6 +110,7 @@ module Octokit
     include Octokit::Client::Issues
     include Octokit::Client::Markdown
     include Octokit::Client::PubSubHubbub
+    include Octokit::Client::PullRequests
     include Octokit::Client::Users
     include Octokit::Client::RateLimit
     include Octokit::Client::Repositories
@@ -118,6 +119,7 @@ module Octokit
     include Octokit::Client::Search
     include Octokit::Client::Statuses
     include Octokit::Client::Say
+    include Octokit::Client::Deployments
 
     CONVENIENCE_HEADERS = Set{"accept", "content_type"}
 
@@ -125,7 +127,7 @@ module Octokit
     #
     # **Example:**
     # ```
-    # cli = Octokit::Client.new("watzon", "MY_PASSWORD")
+    # cli = Octokit::Client.new("monalisa", "MY_PASSWORD")
     # pp cli.user # Show information about the logged in user
     # ```
     def initialize(
@@ -142,7 +144,7 @@ module Octokit
     #
     # **Example:**
     # ```
-    # Octokit::Client.new("watzon", "MY_PASSWORD") do |cli|
+    # Octokit::Client.new("monalisa", "MY_PASSWORD") do |cli|
     #   pp cli.user # Show information about the logged in user
     # end
     # ```
