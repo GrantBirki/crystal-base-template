@@ -1,5 +1,5 @@
-f4755b43dcb423a9fb8ec559c197b72bc5297b73	not-for-merge	branch 'gh-pages' of github.com:crystal-ameba/ameba
-6d03cef6dfd0f52faf19bbcd47d14831db4d7834	not-for-merge	branch 'master' of github.com:crystal-ameba/ameba
+2a24636ff59a2cb6cc7f64d2085462a6b6bf1898	not-for-merge	branch 'gh-pages' of github.com:crystal-ameba/ameba
+f72f0b13303da87483cccea075ef5884e175fdef	not-for-merge	branch 'master' of github.com:crystal-ameba/ameba
 1d4cd161e52d7be729a01e2bbf97913b7de386c3	not-for-merge	'refs/pull/10/head' of github.com:crystal-ameba/ameba
 f1fe34f8b9707015fa6baaca270c0b7a847f8e3e	not-for-merge	'refs/pull/100/head' of github.com:crystal-ameba/ameba
 1719f5279b4a58a76f7b8be94ee278c0a062c5be	not-for-merge	'refs/pull/105/head' of github.com:crystal-ameba/ameba
@@ -231,6 +231,9 @@ a661cf10fc408e2c5b63e2db86e2dbea769645f4	not-for-merge	'refs/pull/455/head' of g
 a3f906a38ad306354cf265e05224ba21f9b92e2e	not-for-merge	'refs/pull/458/head' of github.com:crystal-ameba/ameba
 ccbfe1cba95ddb441932e7fb70b206dc3e5948a0	not-for-merge	'refs/pull/46/head' of github.com:crystal-ameba/ameba
 f12e7f6c5d4c3783fd72b92927906c0b87a49cc9	not-for-merge	'refs/pull/460/head' of github.com:crystal-ameba/ameba
+c4cc71e2488dbb4e09bd311ccddb4ee8e48609b5	not-for-merge	'refs/pull/461/head' of github.com:crystal-ameba/ameba
+a836e2c8d07eab17b5b7d270b0ea800219d9fa08	not-for-merge	'refs/pull/465/head' of github.com:crystal-ameba/ameba
+f29cffa83b7efc3437419ecac9a6a5c83af4e39a	not-for-merge	'refs/pull/466/head' of github.com:crystal-ameba/ameba
 d6e703352a6704d005f7b6c7ead911b96a7811c3	not-for-merge	'refs/pull/47/head' of github.com:crystal-ameba/ameba
 42dfcc375de20c3caac91c353e1446e206d015fa	not-for-merge	'refs/pull/47/merge' of github.com:crystal-ameba/ameba
 1e5faf6efd8e5970796424a0ec30648c7a42f392	not-for-merge	'refs/pull/48/head' of github.com:crystal-ameba/ameba
