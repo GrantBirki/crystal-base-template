@@ -2,6 +2,7 @@
 # .cache/shards/*
 tmp/
 bin/
+!vendor/bin/
 .shards/
 *.dwarf
 dist/
