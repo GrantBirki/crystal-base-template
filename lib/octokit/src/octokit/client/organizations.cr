@@ -1,3 +1,6 @@
+require "../models/orgs"
+require "../models/users"
+
 module Octokit
   class Client
     # Methods for the Organizations API
