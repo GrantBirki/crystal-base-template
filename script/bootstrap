@@ -65,6 +65,6 @@ fi
 
 script/preinstall
 
-SHARDS_CACHE_PATH="$DIR/.cache/shards" ./vendor/bin/shards install --skip-postinstall --skip-executables --local --frozen $@
+SHARDS_CACHE_PATH="$DIR/.cache/shards" ./vendor/bin/shards install --skip-postinstall --skip-executables --local --frozen --verbose $@
 
 script/postinstall
