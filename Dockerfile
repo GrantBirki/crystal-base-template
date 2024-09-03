@@ -1,21 +1,24 @@
-FROM crystallang/crystal:1.13.2 as builder
+FROM crystallang/crystal:1.13.2 AS builder
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y unzip
 
 # copy core scripts
 COPY script/preinstall script/preinstall
 COPY script/bootstrap script/bootstrap
 COPY script/postinstall script/postinstall
+COPY script/unzipper script/unzipper
 
 # copy all vendored dependencies
-COPY lib/ lib/
+COPY vendor/shards/cache/ vendor/shards/cache/
 
 # copy shard files
 COPY shard.lock shard.lock
 COPY shard.yml shard.yml
 
 # bootstrap the project
-RUN script/bootstrap
+RUN script/bootstrap --production
 
 # copy all source files (ensure to use a .dockerignore file for efficient copying)
 COPY . .
