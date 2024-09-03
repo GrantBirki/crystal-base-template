@@ -1,11 +1,13 @@
 # crystal
-# .cache/shards/*
+.cache/shards/*
 tmp/
 bin/
 !vendor/bin/
 .shards/
 *.dwarf
 dist/
+vendor/shards/install
+vendor/.cache
 
 # non-critical vendored crystal files
 lib/**/.github/
