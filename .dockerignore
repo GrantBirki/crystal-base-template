@@ -1,5 +1,6 @@
 docs/
-.cache/
+vendor/.cache/
+vendor/shards/install/
 .github/
 bin/
 data/

@@ -12,6 +12,9 @@ YELLOW='\033[0;33m'
 
 # set the working directory to the root of the project
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+VENDOR_DIR="$DIR/vendor"
+SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
+SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
 # check to ensure both crystal and shards are installed
 if ! [ -x "$(command -v crystal)" ]; then
@@ -64,7 +67,8 @@ if [[ ! -z "$compatability_warning" && "$SUPPRESS_BOOTSTRAP_WARNINGS" != "true" 
 fi
 
 script/preinstall
+script/unzipper
 
-SHARDS_CACHE_PATH="$DIR/.cache/shards" shards install --frozen $@
+SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards install --local --frozen $@
 
-script/postinstall
+# script/postinstall

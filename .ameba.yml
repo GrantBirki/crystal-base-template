@@ -7,4 +7,5 @@ Style/RedundantReturn:
 # exclude all files in vendor/cache
 Globs:
   - "**/*.cr"
-  - "!lib"
+  - "!vendor"
+  - "!tmp"

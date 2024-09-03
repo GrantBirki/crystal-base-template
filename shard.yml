@@ -8,13 +8,13 @@ targets:
   crystal-base-template:
     main: src/cli.cr
 
-crystal: ">= 1.12.1"
+crystal: ">= 1.13.2"
 
 license: MIT
 
 dependencies:
   octokit:
-    github: grantbirki/octokit.cr
+    github: octokit-cr/octokit.cr
 
 development_dependencies:
   ameba:
