@@ -9,6 +9,13 @@ SHARDS_CACHED="$VENDOR_DIR/shards/cache"
 
 file="vendor/shards/install/lib/.shards.info"
 
+# Function to parse owner and repo from URL
+parse_owner_repo() {
+  local url=$1
+  # Use awk to extract the owner and repo name
+  echo $url | awk -F'/' '{print $(NF-1)"/"$(NF)}' | sed 's/.git$//'
+}
+
 if ! [ -x "$(command -v yq)" ]; then
   echo -e "❌ ${RED}Error${OFF}: yq is not installed"
   echo "Please install yq -> https://github.com/mikefarah/yq"
@@ -22,19 +29,24 @@ cleanup() {
 trap cleanup EXIT
 
 # Use yq to parse the file and extract shard names and versions
-shards=$(yq eval '.shards | to_entries | .[] | "\(.key)-\(.value.version)"' $file)
+shards=$(yq eval '.shards | to_entries | .[] | "\(.key)|\(.value.git)|\(.value.version)"' $file)
 
 # Loop over each shard
 echo "$shards" | while IFS= read -r shard; do
   # Extract name and version
-  name=$(echo $shard | cut -d'-' -f1)
-  version=$(echo $shard | cut -d'-' -f2)
+  name=$(echo $shard | cut -d'|' -f1)
+  git_url=$(echo $shard | cut -d'|' -f2)
+  owner_repo=$(parse_owner_repo $git_url)
+  owner=$(echo $owner_repo | cut -d'/' -f1)
+  repo=$(echo $owner_repo | cut -d'/' -f2)
+
+  version=$(echo $shard | cut -d'|' -f3)
 
   mkdir -p "$TRASHDIR/$name-$version.shard"
   mkdir -p "$TRASHDIR/$name-$version.shard/shard"
   mkdir -p "$TRASHDIR/$name-$version.shard/cache"
   cp -r "$SHARDS_INSTALL_PATH/lib/$name/"* "$TRASHDIR/$name-$version.shard/shard" 2>/dev/null || true
-  cp -r "$SHARDS_CACHE_PATH/github.com/$name"* "$TRASHDIR/$name-$version.shard/cache" 2>/dev/null || true
+  cp -r "$SHARDS_CACHE_PATH/github.com/$owner/$repo"* "$TRASHDIR/$name-$version.shard/cache" 2>/dev/null || true
 
   # zip the shard
   zip -q -r "$TRASHDIR/$name-$version.zip" "$TRASHDIR/$name-$version.shard" 2>/dev/null || true
