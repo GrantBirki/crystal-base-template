@@ -11,7 +11,10 @@ PURPLE='\033[0;35m'
 
 # set the working directory to the root of the project
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+VENDOR_DIR="$DIR/vendor"
+SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
+SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
 echo -e "🔨 ${BLUE}building in ${PURPLE}release${BLUE} mode${OFF}"
-SHARDS_CACHE_PATH="$DIR/.cache/shards" shards build --release --progress --debug --error-trace
+SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards build --release --progress --debug --error-trace
 echo -e "📦 ${GREEN}build complete${OFF}"
