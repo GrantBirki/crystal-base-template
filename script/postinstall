@@ -2,6 +2,8 @@
 
 # set the working directory to the root of the project
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+VENDOR_DIR="$DIR/vendor"
+SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
 mkdir -p "$DIR/bin"
 
@@ -25,5 +27,5 @@ fi
 
 if [ "$AMEBA_UP_TO_DATE" = false ]; then
   echo "building ameba binary"
-  cd "$DIR/lib/ameba" && shards build && cp bin/ameba "$DIR/bin/ameba" && cd "$DIR"
+  cd "$SHARDS_INSTALL_PATH/ameba" && shards build && cp bin/ameba "$DIR/bin/ameba" && cd "$DIR"
 fi

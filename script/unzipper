@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# set the working directory to the root of the project
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+VENDOR_DIR="$DIR/vendor"
+SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
+SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
+SHARDS_CACHED="$VENDOR_DIR/shards/cache"
+
+TRASHDIR=$(mktemp -d /tmp/bootstrap.XXXXXXXXXXXXXXXXX)
+cleanup() {
+  rm -rf "$TRASHDIR"
+}
+trap cleanup EXIT
+
+mkdir -p "$SHARDS_INSTALL_PATH"
+mkdir -p "$SHARDS_CACHE_PATH/github.com"
+
+# iterate over all the cached shards in the vendor/shards/cache directory
+for shard in $(find "$SHARDS_CACHED" -type f -maxdepth 1); do
+    # unzip the file into the TRASHDIR
+    unzip -q -o "$shard" -d "$TRASHDIR"
+    # move the shard and cache directories to the correct location
+    mv -f "$TRASHDIR/shard/"* "$SHARDS_INSTALL_PATH/" 2>/dev/null || true
+    mv -f "$TRASHDIR/cache/"* "$SHARDS_CACHE_PATH/github.com/" 2>/dev/null || true
+done
+

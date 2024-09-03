@@ -7,7 +7,7 @@ SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
 SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 SHARDS_CACHED="$VENDOR_DIR/shards/cache"
 
-file="vendor/shards/install/lib/.shards.info"
+file="vendor/shards/install/.shards.info"
 
 # Function to parse owner and repo from URL
 parse_owner_repo() {
@@ -41,10 +41,10 @@ echo "$shards" | while IFS= read -r shard; do
   repo=$(echo $owner_repo | cut -d'/' -f2)
   version=$(echo $shard | cut -d'|' -f3)
 
-  mkdir -p "$TRASHDIR/$name-$version.shard/shard"
-  mkdir -p "$TRASHDIR/$name-$version.shard/cache"
-  cp -r "$SHARDS_INSTALL_PATH/lib/$name/"* "$TRASHDIR/$name-$version.shard/shard" 2>/dev/null || true
-  cp -r "$SHARDS_CACHE_PATH/github.com/$owner/$repo"* "$TRASHDIR/$name-$version.shard/cache" 2>/dev/null || true
+  mkdir -p "$TRASHDIR/$name-$version.shard/shard/$name"
+  mkdir -p "$TRASHDIR/$name-$version.shard/cache/$owner/$repo.git"
+  cp -r "$SHARDS_INSTALL_PATH/$name/"* "$TRASHDIR/$name-$version.shard/shard/$name" 2>/dev/null || true
+  cp -r "$SHARDS_CACHE_PATH/github.com/$owner/$repo.git/"* "$TRASHDIR/$name-$version.shard/cache/$owner/$repo.git"
 
   # Change to the temporary directory and zip the shard and cache directories
   (cd "$TRASHDIR/$name-$version.shard" && zip -q -r "$TRASHDIR/$name-$version.zip" shard cache)
