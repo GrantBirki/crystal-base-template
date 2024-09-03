@@ -23,7 +23,7 @@ COPY . .
 # build the project
 RUN script/build
 
-FROM crystallang/crystal:1.12.1
+FROM crystallang/crystal:1.13.2
 
 # add curl for healthchecks
 RUN apt-get update && apt-get install -y curl
