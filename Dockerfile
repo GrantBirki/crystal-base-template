@@ -1,4 +1,7 @@
-FROM crystallang/crystal:1.13.2 AS builder
+# This ARG is for the version of the Crystal image to use - the "latest" tag is overwritable via the .crystal-version file
+ARG CRYSTAL_VERSION="latest"
+
+FROM crystallang/crystal:${CRYSTAL_VERSION} AS builder
 
 WORKDIR /app
 
@@ -26,7 +29,7 @@ COPY . .
 # build the project
 RUN script/build
 
-FROM crystallang/crystal:1.13.2
+FROM crystallang/crystal:${CRYSTAL_VERSION}
 
 # add curl for healthchecks
 RUN apt-get update && apt-get install -y curl
