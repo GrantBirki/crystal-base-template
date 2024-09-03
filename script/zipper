@@ -39,19 +39,17 @@ echo "$shards" | while IFS= read -r shard; do
   owner_repo=$(parse_owner_repo $git_url)
   owner=$(echo $owner_repo | cut -d'/' -f1)
   repo=$(echo $owner_repo | cut -d'/' -f2)
-
   version=$(echo $shard | cut -d'|' -f3)
 
-  mkdir -p "$TRASHDIR/$name-$version.shard"
   mkdir -p "$TRASHDIR/$name-$version.shard/shard"
   mkdir -p "$TRASHDIR/$name-$version.shard/cache"
   cp -r "$SHARDS_INSTALL_PATH/lib/$name/"* "$TRASHDIR/$name-$version.shard/shard" 2>/dev/null || true
   cp -r "$SHARDS_CACHE_PATH/github.com/$owner/$repo"* "$TRASHDIR/$name-$version.shard/cache" 2>/dev/null || true
 
-  # zip the shard
-  zip -q -r "$TRASHDIR/$name-$version.zip" "$TRASHDIR/$name-$version.shard" 2>/dev/null || true
+  # Change to the temporary directory and zip the shard and cache directories
+  (cd "$TRASHDIR/$name-$version.shard" && zip -q -r "$TRASHDIR/$name-$version.zip" shard cache)
 
-  # move the zip to the cache
+  # Move the zip to the cache
   mkdir -p "$SHARDS_CACHED"
   mv "$TRASHDIR/$name-$version.zip" "$SHARDS_CACHED/$name-$version.shard"
   
