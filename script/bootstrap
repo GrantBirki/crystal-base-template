@@ -65,6 +65,9 @@ fi
 
 script/preinstall
 
+mkdir -p "$DIR/.cache/shards"
+unzip -q -o "$DIR/vendor/cache.zip" -d "$DIR/.cache/shards" || true
+
 SHARDS_CACHE_PATH="$DIR/.cache/shards" ./vendor/bin/shards install --skip-postinstall --skip-executables --local --frozen --verbose $@
 
 script/postinstall
