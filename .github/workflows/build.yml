@@ -28,7 +28,9 @@ jobs:
           crystal: ${{ steps.crystal-version.outputs.crystal }}
 
       - name: bootstrap
-        run: script/bootstrap
+        run: |
+          git ls-remote --get-url origin --bare --git-dir="/home/runner/work/crystal-base-template/crystal-base-template/.cache/shards/github.com/crystal-ameba/ameba.git" --work-tree="/home/runner/work/crystal-base-template/crystal-base-template/.cache/shards/github.com/crystal-ameba/ameba.git"
+          script/bootstrap
 
       - name: build
         run: script/build
