@@ -1,6 +1,7 @@
 docs/
 vendor/.cache/
 vendor/shards/install/
+vendor/ci//bin/
 .github/
 bin/
 data/
@@ -12,3 +13,12 @@ docker-compose.yml
 docker-compose.override.yml
 docker-compose.production.yml
 tmp/
+.ameba.yml
+script/release
+script/deploy
+script/update
+script/lint
+script/format
+script/acceptance
+script/all
+script/test
