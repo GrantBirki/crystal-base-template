@@ -7,6 +7,8 @@ SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
 SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 SHARDS_CACHED="$VENDOR_DIR/shards/cache"
 
+SHARD_SHA_FILE=".shard.vendor.cache.sha256"
+
 TRASHDIR=$(mktemp -d /tmp/bootstrap.XXXXXXXXXXXXXXXXX)
 cleanup() {
   rm -rf "$TRASHDIR"
@@ -39,6 +41,11 @@ if [ ! -f "$VENDOR_DIR/shards/install/.shards.info" ]; then
     # cleanup the TRASHDIR
     rm -rf "$TRASHDIR/shard"
     rm -rf "$TRASHDIR/cache"
+
+    shard_cache_sha=$(shasum -a 256 "$shard" | cut -d' ' -f1)
+
+    # write the new sha to the $SHARD_SHA_FILE file
+    cat > "$SHARDS_INSTALL_PATH/$shard_name/$SHARD_SHA_FILE" <<< "$shard_cache_sha"
   done
 
 else
@@ -57,8 +64,8 @@ else
 
     shard_cache_sha=$(shasum -a 256 "$SHARDS_CACHED/$name-$version.shard" | cut -d' ' -f1)
     shard_current_sha=""
-    if [ -f "$SHARDS_INSTALL_PATH/$name/.shard.vendor.cache.sha256" ]; then
-      shard_current_sha=$(cat "$SHARDS_INSTALL_PATH/$name/.shard.vendor.cache.sha256")
+    if [ -f "$SHARDS_INSTALL_PATH/$name/$SHARD_SHA_FILE" ]; then
+      shard_current_sha=$(cat "$SHARDS_INSTALL_PATH/$name/$SHARD_SHA_FILE")
     fi
 
     if [ "$shard_cache_sha" != "$shard_current_sha" ]; then
@@ -74,8 +81,8 @@ else
       mv -f "$TRASHDIR/shard/"* "$SHARDS_INSTALL_PATH/" 2>/dev/null || true
       mv -f "$TRASHDIR/cache/"* "$SHARDS_CACHE_PATH/github.com/" 2>/dev/null || true
 
-      # write the new sha to the .shard.vendor.cache.sha256 file
-      cat > "$SHARDS_INSTALL_PATH/$name/.shard.vendor.cache.sha256" <<< "$shard_cache_sha"
+      # write the new sha to the $SHARD_SHA_FILE file
+      cat > "$SHARDS_INSTALL_PATH/$name/$SHARD_SHA_FILE" <<< "$shard_cache_sha"
 
       # cleanup the TRASHDIR
       rm -rf "$TRASHDIR/shard"
