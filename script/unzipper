@@ -80,8 +80,6 @@ else
       # cleanup the TRASHDIR
       rm -rf "$TRASHDIR/shard"
       rm -rf "$TRASHDIR/cache"
-    else
-      echo "shard $name $version has not changed, skipping"
     fi
   done
 fi
