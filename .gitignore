@@ -3,6 +3,7 @@
 tmp/
 bin/
 !vendor/bin/
+!vendor/ci/bin/
 .shards/
 *.dwarf
 dist/

@@ -7,6 +7,11 @@ SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
 mkdir -p "$DIR/bin"
 
+if [[ "$@" == *"--ci"* ]]; then
+  echo "copying vendored ci binaries"
+  cp -r "$VENDOR_DIR/ci/bin/." "$DIR/bin"
+fi
+
 if [[ ! "$@" == *"--production"* ]]; then
   # ensure the ameba binary is built and available in the bin directory
   AMEBA_UP_TO_DATE=false
