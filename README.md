@@ -20,7 +20,8 @@ This project uses a highly opinionated dependency vendoring strategy. This strat
 
 1. All dependencies are vendored into the project into the `vendor/shards/cache/` directory
 2. The `vendor/shards/cache/` directory is committed to the repository to ensure that all dependencies are available to build the project forever. These shards are in `<name>-<version>.shard` format and take inspiration from a Ruby "Gem" when they are vendored.
-3. The `script/bootstrap` command installs dependencies with `SHARDS_CACHE_PATH="vendor/.cache/shards" shards install ...` to ensure that each project has its own cache and does not interfere with other crystal projects
+3. The `script/bootstrap` command installs vendored dependencies with `SHARDS_CACHE_PATH="vendor/.cache/shards" shards install ...` to ensure that each project has its own cache and does not interfere with other crystal projects
+4. The `script/update` command will re-vendor all dependencies and update the vendored dependencies in the repository. This will always result is changes to all dependencies, even if the version has not changed. This is to ensure that the vendored dependencies are always up to date and can be used to build the project.
 
 ## Docker Strategy 🐳
 
