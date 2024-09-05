@@ -69,6 +69,7 @@ fi
 script/preinstall
 script/unzipper
 
+# for now, I think I can get away with `--ci` passing in `--skip-postinstall`. This may change one day when I actually need to run the postinstall command for deps in ci
 ci_flags=""
 if [[ "$@" == *"--ci"* ]]; then
   ci_flags="--skip-postinstall"
