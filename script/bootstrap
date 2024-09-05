@@ -71,4 +71,4 @@ script/unzipper
 
 SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards install --local --frozen $@
 
-# script/postinstall
+script/postinstall
