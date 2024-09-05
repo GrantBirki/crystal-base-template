@@ -45,6 +45,14 @@ Run the following command to bootstrap this repository and install all dependenc
 script/bootstrap
 ```
 
+### Updating Dependencies
+
+Run the following command to update all dependencies (shards):
+
+```bash
+script/update
+```
+
 ### Testing
 
 Run the following command to run all unit tests:
@@ -102,6 +110,9 @@ To get started quickly with this project, you will need the following installed:
 - [crystal](https://github.com/crystal-lang/crystal) ([crenv](https://github.com/crenv/crenv) is suggested)
 - [docker compose](https://docs.docker.com/compose/)
 - [bash](https://www.gnu.org/software/bash/)
+- [jq](https://github.com/jqlang/jq)
+- [yq](https://github.com/mikefarah/yq)
+- [zip](https://formulae.brew.sh/formula/zip)
 
 To get your repo setup for development do the following:
 
