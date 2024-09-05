@@ -12,6 +12,7 @@ COPY script/preinstall script/preinstall
 COPY script/bootstrap script/bootstrap
 COPY script/postinstall script/postinstall
 COPY script/unzipper script/unzipper
+COPY script/compute-dep-shas script/compute-dep-shas
 
 # copy all vendored dependencies
 COPY vendor/shards/cache/ vendor/shards/cache/
