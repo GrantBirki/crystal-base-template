@@ -46,12 +46,14 @@ echo "$shards" | while IFS= read -r shard; do
   cp -r "$SHARDS_INSTALL_PATH/$name/"* "$TRASHDIR/$name-$version.shard/shard/$name" 2>/dev/null || true
   cp -r "$SHARDS_CACHE_PATH/github.com/$owner/$repo.git/"* "$TRASHDIR/$name-$version.shard/cache/$owner/$repo.git"
 
+  echo '{"name": "'$name'", "version": "'$version'", "repository": "'$owner/$repo'"}' > "$TRASHDIR/$name-$version.shard/metadata.json"
+
   # Change to the temporary directory and zip the shard and cache directories
-  (cd "$TRASHDIR/$name-$version.shard" && zip -q -r "$TRASHDIR/$name-$version.zip" shard cache)
+  (cd "$TRASHDIR/$name-$version.shard" && zip -q -r "$TRASHDIR/$name-$version.zip" shard cache metadata.json -x "*.shard.vendor.cache.sha256")
 
   # Move the zip to the cache
   mkdir -p "$SHARDS_CACHED"
   mv "$TRASHDIR/$name-$version.zip" "$SHARDS_CACHED/$name-$version.shard"
   
-  echo "cached $name $version"
+  # echo "cached $name $version"
 done
