@@ -18,9 +18,9 @@ This template is designed to be a starting point for quickly getting your projec
 
 This project uses a highly opinionated dependency vendoring strategy. This strategy is designed to ensure that you own your availability and can always build your project. This strategy is as follows:
 
-1. All dependencies are vendored into the project into the `lib/` directory
-2. The `lib/` directory is committed to the repository to ensure that all dependencies are available to build the project forever
-3. The `script/bootstrap` command installs dependencies with `SHARDS_CACHE_PATH="$DIR/.cache/shards" shards install ...` to ensure that each project has its own cache and does not interfere with other crystal projects
+1. All dependencies are vendored into the project into the `vendor/shards/cache/` directory
+2. The `vendor/shards/cache/` directory is committed to the repository to ensure that all dependencies are available to build the project forever. These shards are in `<name>-<version>.shard` format and take inspiration from a Ruby "Gem" when they are vendored.
+3. The `script/bootstrap` command installs dependencies with `SHARDS_CACHE_PATH="vendor/.cache/shards" shards install ...` to ensure that each project has its own cache and does not interfere with other crystal projects
 
 ## Docker Strategy 🐳
 
