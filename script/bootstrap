@@ -69,6 +69,11 @@ fi
 script/preinstall
 script/unzipper
 
-SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards install --local --frozen $@
+ci_flags=""
+if [[ "$@" == *"--ci"* ]]; then
+  ci_flags="--skip-postinstall"
+fi
+
+SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards install --local --frozen $ci_flags $@
 
 script/postinstall $@
