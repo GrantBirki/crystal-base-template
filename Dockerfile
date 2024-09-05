@@ -8,11 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y unzip
 
 # copy core scripts
-COPY script/preinstall script/preinstall
-COPY script/bootstrap script/bootstrap
-COPY script/postinstall script/postinstall
-COPY script/unzipper script/unzipper
-COPY script/compute-dep-shas script/compute-dep-shas
+COPY script/ script/
 
 # copy all vendored dependencies
 COPY vendor/shards/cache/ vendor/shards/cache/
