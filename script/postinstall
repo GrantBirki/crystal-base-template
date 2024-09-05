@@ -7,9 +7,13 @@ SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
 mkdir -p "$DIR/bin"
 
+echo "postinstall flags: $@"
+
 if [[ "$@" == *"--ci"* ]]; then
   # copy the contents of $VENDOR_DIR/ci/bin to the bin directory
+  echo "Copying vendor/ci/bin to bin"
   cp -r "$VENDOR_DIR/ci/bin/." "$DIR/bin"
+  ls -lah "$DIR/bin"
 fi
 
 if [[ ! "$@" == *"--production"* ]]; then
