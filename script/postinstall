@@ -15,7 +15,7 @@ flags="$@"
 
 if [[ "$flags" == *"--ci"* ]]; then
   echo $OSTYPE
-  echo echo $(uname -m)
+  echo $(uname -m)
 fi
 
 # Determine if the system is a Mac or Linux
