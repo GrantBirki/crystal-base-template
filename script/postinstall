@@ -5,18 +5,25 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 VENDOR_DIR="$DIR/vendor"
 SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
-LINUX_VENDOR_DIR="$DIR/vendor/linux_x86_64/bin"
-DARWIN_VENDOR_DIR_X64="$DIR/vendor/darwin_x86_64/bin"
-DARWIN_VENDOR_DIR_ARM64="$DIR/vendor/darwin_arm64/bin"
+LINUX_VENDOR_DIR="$VENDOR_DIR/linux_x86_64/bin"
+DARWIN_VENDOR_DIR_X64="$VENDOR_DIR/darwin_x86_64/bin"
+DARWIN_VENDOR_DIR_ARM64="$VENDOR_DIR/darwin_arm64/bin"
 
 mkdir -p "$DIR/bin"
+
+flags="$@"
+
+if [[ "$flags" == *"--ci"* ]]; then
+  echo $OSTYPE
+  echo echo $(uname -m)
+fi
 
 # Determine if the system is a Mac or Linux
 os="unknown"
 arch="unknown"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   os="linux"
-  if [ "$@" == *"--ci"* ]; then
+  if [[ "$flags" == *"--ci"* ]]; then
     echo "OSTYPE: $OSTYPE"
     echo "running in CI mode, copying vendored binaries to bin/ directory (linux)"
     cp -r "$LINUX_VENDOR_DIR/." "$DIR/bin"
@@ -24,7 +31,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   os="mac"
   arch=$(uname -m)
-  if [ "$@" == *"--ci"* ]; then
+  if [[ "$flags" == *"--ci"* ]]; then
     echo "OSTYPE: $OSTYPE"
     echo "ARCH: $arch"
     echo "running in CI mode, copying vendored binaries to bin/ directory (mac)"
