@@ -35,10 +35,3 @@ jobs:
 
       - name: build
         run: script/build
-
-      - name: upload ameba bin
-        uses: actions/upload-artifact@v4
-        if : ${{ matrix.os == 'macos-latest' }}
-        with:
-          name: ameba
-          path: bin/ameba
