@@ -1,3 +1,4 @@
+require "octokit"
 require "log"
 require "./lib/crystal-base-template"
 
