@@ -16,6 +16,15 @@ VENDOR_DIR="$DIR/vendor"
 SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
 SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
+crystal_path_var="$(crystal env CRYSTAL_PATH)"
+# if the crystal_path_var does not contain 'vendor/shards/install' then we need to add it to the CRYSTAL_PATH
+if [[ "$crystal_path_var" != *"vendor/shards/install"* ]]; then
+  echo -e "💡 ${YELLOW}WARNING${OFF}: This project uses a custom vendoring strategy. Please update your ${PURPLE}CRYSTAL_PATH${OFF} env var to also check the ${PURPLE}vendor/shards/install${OFF} dir relative to the root of this (and other) crystal projects for builds to work properly. Example:\n"
+  echo -e "${PURPLE}export CRYSTAL_PATH=\"vendor/shards/install:$(crystal env CRYSTAL_PATH)\"${OFF}\n"
+
+  echo -e "It is suggested to add this to your ${PURPLE}.bashrc${OFF} or ${PURPLE}.zshrc${OFF} file so you only have to update it once and then can forget about it.\n"
+fi
+
 # check to ensure both crystal and shards are installed
 if ! [ -x "$(command -v crystal)" ]; then
   echo -e "❌ ${RED}Error${OFF}: crystal is not installed"
