@@ -19,6 +19,11 @@ if [[ "$CI" == "true" ]]; then
   source script/ci-env
 fi
 
+# if the --production flag is passed, always ensure the CRYSTAL_PATH is set with vendored shards
+if [[ "$@" == *"--production"* ]]; then
+  export CRYSTAL_PATH="vendor/shards/install:$(crystal env CRYSTAL_PATH)"
+fi
+
 echo -e "🔨 ${BLUE}building in ${PURPLE}release${BLUE} mode${OFF}"
 SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards build --production --release --progress --debug --error-trace
 echo -e "📦 ${GREEN}build complete${OFF}"
