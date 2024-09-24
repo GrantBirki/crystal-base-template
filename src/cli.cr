@@ -1,6 +1,6 @@
-require "octokit"
 require "log"
 require "./lib/crystal-base-template"
+require "./lib/github-version-check"
 
 module CLI
   def self.main
@@ -16,6 +16,9 @@ module CLI
 
     Log.info { "attempting to crunch the numbers" }
     result = Crystal::Base::Template.add(num1, num2)
+
+    github_version_check
+
     puts result
   end
 end
