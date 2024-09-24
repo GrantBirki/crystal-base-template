@@ -1,5 +1,6 @@
 require "log"
 require "./lib/crystal-base-template"
+require "./lib/github-version-check"
 
 module CLI
   def self.main
@@ -13,8 +14,11 @@ module CLI
     num1 = ARGV[0].to_i
     num2 = ARGV[1].to_i
 
+    github_version_check
+
     Log.info { "attempting to crunch the numbers" }
     result = Crystal::Base::Template.add(num1, num2)
+
     puts result
   end
 end

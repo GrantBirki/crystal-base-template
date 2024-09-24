@@ -5,7 +5,10 @@ FROM crystallang/crystal:${CRYSTAL_VERSION} AS builder
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y unzip
+RUN apt-get update && apt-get install -y unzip wget
+
+# install yq
+RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
 
 # copy core scripts
 COPY script/ script/
@@ -24,7 +27,7 @@ RUN script/bootstrap --production
 COPY . .
 
 # build the project
-RUN script/build
+RUN script/build --production
 
 FROM crystallang/crystal:${CRYSTAL_VERSION}
 
