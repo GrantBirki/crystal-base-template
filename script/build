@@ -15,6 +15,10 @@ VENDOR_DIR="$DIR/vendor"
 SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
 SHARDS_INSTALL_PATH="$VENDOR_DIR/shards/install"
 
+if [[ "$CI" == "true" ]]; then
+  source script/ci-env
+fi
+
 echo -e "🔨 ${BLUE}building in ${PURPLE}release${BLUE} mode${OFF}"
 SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards build --production --release --progress --debug --error-trace
 echo -e "📦 ${GREEN}build complete${OFF}"
