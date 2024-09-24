@@ -24,7 +24,7 @@ RUN script/bootstrap --production
 COPY . .
 
 # build the project
-RUN script/build
+RUN script/build --production
 
 FROM crystallang/crystal:${CRYSTAL_VERSION}
 
