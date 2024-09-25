@@ -11,6 +11,8 @@ export PURPLE='\033[0;35m'
 # set the working directory to the root of the project
 export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 
+export CRYSTAL_VERSION=$(cat "$DIR/.crystal-version")
+
 # set common variables
 export VENDOR_DIR="$DIR/vendor"
 export SHARDS_CACHE_PATH="$VENDOR_DIR/.cache/shards"
