@@ -55,6 +55,15 @@ else
   SUCCESS="false"
 fi
 
+script_server_results=$(script/server 1344 5)
+
+# check for the 1349 text in the results
+if [[ $script_server_results == *"1349"* ]]; then
+  echo -e "✅ ${GREEN}number 1349 found in script/server results${OFF}"
+else
+  SUCCESS="false"
+fi
+
 ###### acceptance tests results ######
 
 # cleanup
