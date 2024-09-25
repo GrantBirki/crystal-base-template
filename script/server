@@ -4,4 +4,4 @@ set -e
 
 source script/setup-env $@
 
-shards run --release --debug --error-trace
+shards run --release --debug --error-trace -- $@
