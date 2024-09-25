@@ -72,7 +72,7 @@ if [[ "$@" == *"--ci"* ]]; then
 fi
 
 # install the shards
-SHARDS_CACHE_PATH="$SHARDS_CACHE_PATH" SHARDS_INSTALL_PATH="$SHARDS_INSTALL_PATH" shards install --local --frozen $ci_flags $@
+shards install --local --frozen $ci_flags $@
 
 # shards install often wipes out our custom shards sha256 file so we need to recompute it if they are gone
 script/compute-dep-shas
