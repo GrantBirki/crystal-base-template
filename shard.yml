@@ -8,7 +8,7 @@ targets:
   crystal-base-template:
     main: src/cli.cr
 
-crystal: ">= 1.13.2"
+crystal: ">= 1.14.1"
 
 license: MIT
 
@@ -19,4 +19,4 @@ dependencies:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 1.6.1
+    version: == 1.6.1
